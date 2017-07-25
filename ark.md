@@ -1,3 +1,8 @@
+<link rel="stylesheet" type="text/css" href="mermaid.css">
+<script src="mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+
+
 # Løsninsbeskrivelse gjenkjenning av eIDAS-brukere i ID-porten
 
 ## Fase A: arkitekturvisjon
@@ -6,7 +11,7 @@ Visjonen er henta fra et av målene fra ID-porten sin strategi:
 
 > *Fysiske personer med europeisk e-ID kan autentiseres i ID-porten.*
 
-Denne utredninga ser på alternativet der gjenkjenningsfunksjoanlitet er plassert i ID-porten
+Denne utredninga ser på alternativet der gjenkjenningsfunksjonalitet er plassert i ID-porten
 
 ## Fase B: Virksomhetsarkitektur
 
@@ -57,7 +62,7 @@ På virksomhetsnivå vil følgende forretningsprosesser være relevante for  eID
 |3|Som offentlig tjeneste ønsker jeg at eIDAS-brukere som ikke blir gjenkjent, skal bli vist enkel feilside i ID-porten, slik at jeg slipper å lage egen feil-behandling | OK, implementert | eIDAS-bruker som ikke blir gjenkjent, får opp en side "Du har ikke D-nummer. Ta kontakt med Folkeregisteret dersom dette ikke stemmer." |
 |4|Som offentlig tjeneste ønsker jeg at bare eIDAS-brukere som er gjenkjent med F/D-nummer kan logge inn i min tjeneste, slik at jeg slipper å endre mine fagsystemer|OK, implementert i ID-porten| Tjenester som er prekonfigurert for dette, vil _kun_ motta pålogginger der eIDAS-brukeren er gjenkjent. Dersom eIDAS-brukeren ikke bli gjenkjent, se #3. Noen tjenester kan håndtere brukere både med og uten D-nummer, og de klarer seg med #2. **Merk:** denne brukerhistorien omhandler ikke selve gjenkjeninngsprosessen (#2).|Behovsanalysen viser at majoriteten av tjenesteeiere ønsker slik oppførsel.|
 |5|Som norsk eIDAS-Node skal jeg be utenlandsk eIDAS Node i samarbeidsland  om å sende TIN-nummer som ekstra attributt til innloggingen, slik at vi kan gjenkjenne eIDAS-bruker fra de land der eIDAS-identifikatoren ikke er meningsbærende.  | Ikke implementert | Flere land vil ikke sende en meningsbærende eIDAS-identifikator. Men med enkelte av disse kan det på bilateral basis inngås avtaler om utveksling av ytterligere, meningsbærende informasjon, som feks. TIN eller  personidentifikator.  ID-porten må vite hvilke land dette er snakk om, og be om ytterligere informasjon når det er relevant.  | Må vurdere om dette skal skje hver gang, eller kun _dersom_ gjenkjenning mislykkes.  Kan feks. skje i kombinasjon med #3 slik: *"Jo, jeg har D-nummer og ønsker at norske myndigheter henter ytterligere informasjon fra mitt hjemland, for å se om dere finner meg igjen i norske registre."*|
-|6|Som gjenkjenningskomponent skal jeg slå opp i ESSII-databasen for å kvalitetssikre kobling mellom D-nummer og utenlansk TIN-nummer| Dersom eIDAS-bruker ikke ble gjenkjent mot Folkeregisteret, men
+|6|Som gjenkjenningskomponent skal jeg slå opp i ESSII-databasen for å kvalitetssikre kobling mellom D-nummer og utenlansk TIN-nummer|Ikke implementert| Dersom eIDAS-bruker ikke ble gjenkjent mot Folkeregisteret, men eIDAS-attributtene kommer med en
 
 #### Administrasjonstjenester
 
